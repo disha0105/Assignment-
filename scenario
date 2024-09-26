@@ -1,0 +1,7 @@
+Maximum value at the first column: Left value will be None.
+2. Maximum value at the last column: Right value will be None.
+3. Maximum value at the top-left corner: Left value will be None.
+4. Maximum value at the bottom-right corne: Right value will be None.
+5. Maximum value in the middle: Both left and right values will be available.
+6. Matrix with duplicate maximum values: Will return the first occurrence.
+matrix with zero: will handle zero correctly 

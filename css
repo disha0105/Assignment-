@@ -1,0 +1,10 @@
+#matrixContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30px, 1fr)); /Adjust as needed /
+    gap: 5px;
+}
+
+#matrixContainer input {
+    width: 100%;
+    text-align: center;
+}

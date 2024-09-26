@@ -1,0 +1,70 @@
+The code provided performs the following tasks:
+
+1. Generate Matrix
+   - The user inputs the number of rows and columns.
+   - For each position in the matrix, the user is prompted to enter a value.
+   - The matrix is stored as a 2D list of integers.
+
+2. Find Maximum Value
+   - The code iterates through the matrix to find the maximum value and its position (row, column).
+   
+3. Find Left and Right Values
+   - Once the maximum value is found, the code checks for values to the left and right of the maximum value in the same row. If the maximum is on the boundary (first or last column), it returns None for the left or right value accordingly.
+
+4. Output
+   - The generated matrix is printed.
+   - The maximum value and its position are displayed.
+   - The left and right values of the maximum are shown.
+5. Programming languages 
+   -javascript
+   -A two-dimensional array is a collection of items that are organized as a matrix of rows and columns. A 2 by 2 square matrix. If we look closely we can see that the first row of letters is just a normal JS Array, firstRow = [a,b].
+
+   Time Complexity
+
+1. Matrix Generation (generate_matrix):
+   - The time complexity for generating the matrix is \(O(rows \times cols)\), as it requires getting user input for each element.
+
+2. Find Maximum Value (find_max_value):
+   - This function iterates through each element in the matrix to find the maximum value. The time complexity is \(O(rows \times cols)\).
+
+3. Find Left and Right Values (find_left_right_values):
+   - This function checks only two values: left and right of the maximum value, which is \(O(1)\).
+
+Thus, the overall time complexity is \(O(rows \times cols)\).
+
+ Example Output
+
+Let's consider an example where the user inputs a 3x3 matrix.
+
+
+Enter number of rows: 3
+Enter number of columns: 3
+Enter value for row 1, column 1: 2
+Enter value for row 1, column 2: 10
+Enter value for row 1, column 3: 11
+Enter value for row 2, column 1: 35
+Enter value for row 2, column 2: 30
+Enter value for row 2, column 3: 5
+Enter value for row 3, column 1: 2
+Enter value for row 3, column 2: 50
+Enter value for row 3, column 3: 3
+
+
+*Generated Matrix:*
+
+
+[2, 10, 11]
+[35, 30, 5]
+[2, 50, 3]
+
+
+*Maximum Value:*
+
+Maximum Value: 50 at position (11, 30)
+
+
+*Left and Right Values:*
+
+Left Value: 2, Right Value: 3
+
+

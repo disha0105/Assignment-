@@ -1,72 +1,72 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Matrix Assignment</title>
-</head>
-<body>
-
-  <h2>Matrix Input</h2>
-  <label for="rows">Rows:</label>
-  <input type="number" id="rows" min="1"> 
-  <label for="cols">Columns:</label>
-  <input type="number" id="cols" min="1"> 
-  <button onclick="generateMatrix()">Generate Matrix</button>
-
-  <div id="matrixContainer"></div>
-
-  <button onclick="findLeftRight()">Find Left and Right Values</button>
-  <p>Left Value: <span id="leftValue"></span></p>
-  <p>Right Value: <span id="rightValue"></span></p>
-
-  <script>
     function generateMatrix() {
-      let rows = parseInt(document.getElementById("rows").value);
-      let cols = parseInt(document.getElementById("cols").value);
+            const rows = parseInt(document.getElementById('rows').value);
+            const cols = parseInt(document.getElementById('cols').value);
+            const container = document.getElementById('matrix-container');
+            container.innerHTML = ''; 
 
-      let matrixContainer = document.getElementById("matrixContainer");
-      matrixContainer.innerHTML = "";
-
-      let table = document.createElement("table");
-      for (let i = 0; i < rows; i++) {
-        let row = document.createElement("tr");
-        for (let j = 0; j < cols; j++) {
-          let cell = document.createElement("td");
-          let input = document.createElement("input");
-          input.type = "number";
-          input.oninput = function() { validateInput(this); };
-          cell.appendChild(input);
-          row.appendChild(cell);
+            if (rows > 0 && cols > 0) {
+                const table = document.createElement('table');
+                for (let i = 0; i < rows; i++) {
+                    const tr = document.createElement('tr');
+                    for (let j = 0; j < cols; j++) {
+                        const td = document.createElement('td');
+                        const input = document.createElement('input');
+                        input.type = 'number';
+                        input.className = 'matrix-input';
+                        td.appendChild(input);
+                        tr.appendChild(td);
+                    }
+                    table.appendChild(tr);
+                }
+                container.appendChild(table);
+            }
         }
-        table.appendChild(row);
-      }
-      matrixContainer.appendChild(table);
-    }
 
-    function validateInput(input) {
-      input.value = input.value.replace(/[^0-9]/g, "");
-    }
+        function findMaxValue() {
+            const inputs = document.querySelectorAll('.matrix-input');
+            let matrix = [];
+            let max = -Infinity;
+            let maxRow = -1;
+            let maxCol = -1;
 
-    function findLeftRight() {
-      let max = -Infinity;
-      let left = 0;
-      let right = 0;
+            inputs.forEach((input, index) => {
+                const row = Math.floor(index / document.getElementById('cols').value);
+                const col = index % document.getElementById('cols').value;
+                const value = parseInt(input.value);
 
-      let table = document.getElementById("matrixContainer").querySelector("table");
-      for (let i = 0; i < table.rows.length; i++) {
-        for (let j = 0; j < table.rows[i].cells.length; j++) {
-          let value = parseInt(table.rows[i].cells[j].querySelector("input").value);
-          if (value > max) {
-            max = value;
-            left = j > 0 ? parseInt(table.rows[i].cells[j - 1].querySelector("input").value) : null;
-            right = j < table.rows[i].cells.length - 1 ? parseInt(table.rows[i].cells[j + 1].querySelector("input").value) : null;
-          }
+                if (!matrix[row]) {
+                    matrix[row] = [];
+                }
+
+                matrix[row][col] = value;
+
+                if (value > max) {
+                    max = value;
+                    maxRow = row;
+                    maxCol = col;
+                }
+            });
+
+            
+            let leftValue = null;
+            let rightValue = null;
+
+            if (maxCol > 0) {
+                leftValue = matrix[maxRow][maxCol - 1];
+            }
+
+            if (maxCol < matrix[0].length - 1) {
+                rightValue = matrix[maxRow][maxCol + 1];
+            }
+
+            const resultText = `Max Value: ${max}, Left Value: ${leftValue ?? 'None'}, Right Value: ${rightValue ?? 'None'}`;
+            document.getElementById('result').innerText = resultText;
         }
-      }
 
-      document.getElementById("leftValue").textContent = left;
-      document.getElementById("rightValue").textContent = right;
-    }
-  </script>
+        // Reload the page
+        function reloadPage() {
+            location.reload();
+        }
 
-</body>
-</html>
+     
+  
